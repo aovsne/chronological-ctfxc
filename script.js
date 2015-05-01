@@ -26,6 +26,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
   }
 
   $scope.play = function(playIdx) {
+    var player
     $('#stage').html("")
     if (playIdx === undefined) {
       $scope.curIdx++
