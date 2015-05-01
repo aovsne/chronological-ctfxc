@@ -39,7 +39,7 @@
   </div>
   <div class="col-sm-offset-1 col-sm-5" id='vidList'>
     <div class="list-group">
-      <a class="list-group-item" ng-repeat="vid in vids" ng-click="byId(idx)">{{vid.title}}</a>
+      <a class="list-group-item" ng-repeat="vid in vids track by $index" ng-click="byId($index)">{{vid.title}}</a>
     </div>
   </div>
 
