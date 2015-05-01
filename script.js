@@ -57,10 +57,12 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
             } else {
               console.log($scope.vids[$scope.curIdx].id)
               player.loadVideoById($scope.vids[$scope.curIdx].id)
-              $scope.$apply()
             }
           }
           $scope.playedNext = id
+        } else {
+          $scope.$apply(++$scope.curIdx)
+          player.loadVideoById($scope.vids[$scope.curIdx].id)
         }
       }
       window.onresize = function() {
