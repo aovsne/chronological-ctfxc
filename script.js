@@ -16,7 +16,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         prev.push({id:cur.id.videoId,title:cur.snippet.title})
         return prev
       },[]).reverse()
-      console.log($scope.vids)
       $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
       player = new YT.Player('ytplayer', {
         height: window.innerWidth * 0.609375 * .5,
@@ -35,6 +34,10 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           $scope.next($scope.vids[$scope.curIdx].id,event)
         }
       }
+      $scope.byId = (idx) {
+        player.loadVideoById($scope.vids[idx].id)
+        $scope.curIdx = idx
+      }
       $scope.next = function(id) {
         if (id !== undefined) {
           if ($scope.playedNext !== id) {
@@ -43,10 +46,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
             $scope.$apply()
           }
           $scope.playedNext = id
-        } else {
-          $scope.$apply(++$scope.curIdx)
-          player.loadVideoById($scope.vids[$scope.curIdx].id)
-          $scope.$apply()
         }
       }
       window.onresize = function() {
