@@ -14,8 +14,25 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         prev.push({id:cur.id.videoId,title:cur.snippet.title})
         return prev
       },[]).reverse()
+      $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
+      $scope.player = new YT.Player('ytplayer', {
+        height: window.innerWidth * 0.609375 * .5,
+        width: window.innerWidth * .4,
+        videoId: $scope.vids[0].id,
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange,
+        }
+      })
+      function onPlayerReady(event) {
+        event.target.playVideo()
+      }
+      function onPlayerStateChange(event) {
+        if (event.target.getPlayerState()===0) {
+          $scope.next($scope.vids[$scope.curIdx].id,event)
+        }
+      }
       $scope.play(0)
-      console.log(res)
     })
   }
   $scope.$watch('st',$scope.go)
@@ -35,11 +52,11 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     }
     var cur = $scope.vids[$scope.curIdx]
     // youtube
-    $scope.next = function(id,event) {
+    $scope.next = function(id) {
       if (id !== undefined) {
         if ($scope.playedNext !== id) {
           $scope.$apply(++$scope.curIdx)
-          event.target.loadVideoById($scope.vids[$scope.curIdx].id)
+          $scope.player.loadVideoById($scope.vids[$scope.curIdx].id)
           $scope.$apply()
         }
         $scope.playedNext = id
@@ -49,24 +66,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         $scope.$apply()
       }
     }
-    function onPlayerReady(event) {
-      event.target.playVideo()
-    }
-    function onPlayerStateChange(event) {
-      if (event.target.getPlayerState()===0) {
-        $scope.next($scope.vids[$scope.curIdx].id,event)
-      }
-    }
-    $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
-    player = new YT.Player('ytplayer', {
-      height: window.innerWidth * 0.609375 * .35,
-      width: window.innerWidth * .35,
-      videoId: $scope.vids[$scope.curIdx].id,
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange,
-      }
-    })
+
+
     window.onresize = function() {
       $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
       player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
