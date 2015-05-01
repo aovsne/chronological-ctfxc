@@ -7,7 +7,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
   $scope.go = function(start) {
     if ($scope.st === undefined) return
     $('#stage').html('')
-
+    console.log(start)
     if (start !== undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
