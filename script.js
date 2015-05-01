@@ -34,7 +34,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           'onStateChange': onPlayerStateChange,
         }
       })
-      $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
+
       function onPlayerReady(event) {
         player.playVideo()
       }
@@ -67,6 +67,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         player.setSize(window.innerWidth * ((window.innerWidth<768) ? .92 : .4),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .92 : .4))
         $scope.apply()
       }
+      $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
     })
   }
   $scope.$watch('st',$scope.go)
