@@ -48,6 +48,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         $scope.curIdx = idx
       }
       $scope.next = function(id) {
+        console.log('next')
         if (id !== undefined) {
           if ($scope.playedNext !== id) {
             $scope.$apply(++$scope.curIdx)
@@ -65,7 +66,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
         $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4)+'px')
         player.setSize(window.innerWidth * ((window.innerWidth<768) ? .92 : .4),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .92 : .4))
-        $scope.apply()
       }
       $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
     })
