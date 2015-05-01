@@ -9,10 +9,9 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     } else {
       $scope.curStart = new Date (Date.parse(start).getTime() + 24*60*60*1000)
     }
-    console.log($scope.curStart)
-    console.log($scope.curStart.toISOString())
-    var start = $scope.curStart.toISOString()
+    var start = $scope.curStart
     var end = new Date (Date.parse(start).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
+    start = start.toISOString()
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+start+
     '&publishedBefore='+end+'&part=snippet&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
