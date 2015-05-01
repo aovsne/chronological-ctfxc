@@ -46,7 +46,11 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           $scope.$apply()
         }
       }
-
+      window.onresize = function() {
+        $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
+        $scope.player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
+        $scope.apply()
+      }
     })
   }
   $scope.$watch('st',$scope.go)
@@ -66,11 +70,9 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     // youtube
 
 
-    window.onresize = function() {
-      $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
-      player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
-    }
+
   }
+
   $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
 
 }]);
