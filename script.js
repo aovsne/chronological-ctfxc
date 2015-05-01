@@ -50,6 +50,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           if ($scope.playedNext !== id) {
             $scope.$apply(++$scope.curIdx)
             if ($scope.vids[$scope.curIdx]===undefined) {
+              console.log($scope.curStart.getTime()+50*24*60*60*1000)
               $scope.go($scope.curStart.getTime()+50*24*60*60*1000)
             }
             player.loadVideoById($scope.vids[$scope.curIdx].id)
