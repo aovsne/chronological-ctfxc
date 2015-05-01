@@ -5,9 +5,10 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
   $('#vidList').css('height', '0px')
 
   $scope.go = function(start) {
-    $('#stage').html('')
     if ($scope.st === undefined) return
-    if ($scope.curStart !== undefined) {
+    $('#stage').html('')
+
+    if (start !== undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
       $scope.curStart = $scope.curStart.getTime() + 24*60*60*1000
