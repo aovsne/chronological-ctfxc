@@ -4,12 +4,13 @@ var app = angular.module('app', ['ui.bootstrap'])
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function(start) {
     $('#stage').html('')
-    if ($scope.st===undefined) return
     if (start === undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
       $scope.curStart = new Date (Date.parse(start).getTime() + 24*60*60*1000)
     }
+    console.log($scope.curStart)
+    $scope.curStart.toISOString()
     var start = $scope.curStart.toISOString()
     var end = new Date (Date.parse(start).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+start+
