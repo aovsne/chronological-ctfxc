@@ -50,7 +50,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           if ($scope.playedNext !== id) {
             $scope.$apply(++$scope.curIdx)
             if ($scope.vids[$scope.curIdx]===undefined) {
-              $scope.next50 = tr
+              $scope.next50 = true
               $scope.go()
             }
             player.loadVideoById($scope.vids[$scope.curIdx].id)
