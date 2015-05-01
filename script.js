@@ -69,7 +69,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       function setSize() {
         var width = $('.col-sm-6').outerWidth()
         player.setSize(width,width * 0.609375)
-        #('.btn-vid').css('width',width)
+        $('.btn-vid').css('width',width)
 
       }
       setSize()
