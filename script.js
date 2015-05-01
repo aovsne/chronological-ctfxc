@@ -11,9 +11,11 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
       $scope.ids = res.items.reduce(function(prev,cur) {
+        console.log(cur)
         prev.push(cur.id.videoId)
         return prev
       },[])
+      console.log(scope.ids)
       $scope.play(0)
     })
   }
