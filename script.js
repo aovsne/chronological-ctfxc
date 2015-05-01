@@ -15,7 +15,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
         prev.push(cur.id.videoId)
         return prev
       },[])
-      console.log(scope.ids)
+      console.log($scope.ids)
       $scope.play(0)
     })
   }
