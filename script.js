@@ -18,6 +18,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       console.log(res)
     })
   }
+  $scope.$watch($scope.st,$scope.go)
   function dtToISO(date) {
     if (date === undefined || date === null)
       return new Date().toISOString()
