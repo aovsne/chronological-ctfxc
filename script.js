@@ -51,8 +51,8 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     }
     $('#stage').append("<div id='ytplayer'></div>")
     player = new YT.Player('ytplayer', {
-      height: window.innerWidth * 0.609375 * .7,
-      width: window.innerWidth * .7,
+      height: window.innerWidth * 0.609375 * .4,
+      width: window.innerWidth * .4,
       videoId: $scope.ids[$scope.curIdx],
       events: {
         'onReady': onPlayerReady,
@@ -60,7 +60,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
       }
     })
     window.onresize = function() {
-      player.setSize(window.innerWidth * .9,window.innerWidth * 0.609375 * .9)
+      player.setSize(window.innerWidth * .4,window.innerWidth * 0.609375 * .4)
     }
   }
 
