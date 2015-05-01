@@ -15,6 +15,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         return prev
       },[]).reverse()
       $scope.play(0)
+      console.log(res)
     })
   }
   function dtToISO(date) {
@@ -42,7 +43,9 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         }
         $scope.playedNext = id
       } else {
-          $scope.play()
+        $scope.$apply(++$scope.curIdx)
+        event.target.loadVideoById($scope.ids[$scope.curIdx])
+        $scope.$apply()
       }
     }
     function onPlayerReady(event) {
