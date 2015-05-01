@@ -4,14 +4,15 @@ var app = angular.module('app', ['ui.bootstrap'])
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $('#vidList').css('height', '0px')
 
-  $scope.go = function(startDate) {
+  $scope.go = function() {
     if ($scope.st === undefined) return
     $('#stage').html('')
     if ($scope.next50 === true) {
-      $scope.curStart = Date.parse($scope.curStart.getTime()+50*24*60*60*1000)
+      $scope.curStart = $scope.curStart.getTime()+50*24*60*60*1000
+      console.log($scope.curStart)
       $scope.next50 = false
     } else {
-      $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
+      $scope.curStart = Date.parse($scope.st).getTime() + 24*60*60*1000
     }
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
     var end = new Date (Date.parse($scope.curStart).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
