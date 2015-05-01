@@ -8,7 +8,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     if ($scope.st === undefined) return
     $('#stage').html('')
     if ($scope.next50 === true) {
-      $scope.curStart = new Date($scope.curStart.getTime())+50*24*60*60*1000
+      $scope.curStart = new Date($scope.curStart).getTime()+50*24*60*60*1000
       console.log($scope.curStart)
       $scope.next50 = false
     } else {
