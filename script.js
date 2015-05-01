@@ -5,7 +5,12 @@ var app = angular.module('app', ['ui.bootstrap'])
 
 app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
   $scope.go = function() {
-    $http.get('https://www.googleapis.com/youtube/v3/search?publishedAfter='+dtToISO($scope.st)+
+    console.log(dtToISO($scope.en))
+    console.log(dtToISO($scope.st))
+    console.log('https://www.googleapis.com/youtube/v3/search?part=id&publishedAfter='+dtToISO($scope.st)+
+    '&publishedBefore='+dtToISO($scope.en)+'&part=id&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
+    'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=1000&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
+    $http.get('https://www.googleapis.com/youtube/v3/search?part=id&publishedAfter='+dtToISO($scope.st)+
     '&publishedBefore='+dtToISO($scope.en)+'&part=id&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=1000&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){console.log(res.items)});
