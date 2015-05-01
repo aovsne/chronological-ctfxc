@@ -34,12 +34,16 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     var cur = $scope.ids[$scope.curIdx]
     // youtube
     $scope.next = function(id,event) {
-      if ($scope.playedNext !== id) {
+      if (id !== undefined) {
+        if ($scope.playedNext !== id) {
           $scope.$apply(++$scope.curIdx)
-          player.loadVideoById($scope.ids[$scope.curIdx])
+          event.target.loadVideoById($scope.media[$scope.curIdx])
           $scope.$apply()
+        }
+        $scope.playedNext = id
+      } else {
+          $scope.play()
       }
-      $scope.playedNext = id
     }
     function onPlayerReady(event) {
       event.target.playVideo()
