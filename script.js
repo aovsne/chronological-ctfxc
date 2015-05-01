@@ -34,6 +34,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     var cur = $scope.ids[$scope.curIdx]
     // youtube
     $scope.next = function(id,event) {
+      console.log('hello')
       if ($scope.playedNext !== id) {
           $scope.$apply(++$scope.curIdx)
           event.target.loadVideoById($scope.ids[$scope.curIdx])
@@ -49,7 +50,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         $scope.next($scope.ids[$scope.curIdx],event)
       }
     }
-    $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i>Next</button>")($scope))
+    $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
     player = new YT.Player('ytplayer', {
       height: window.innerWidth * 0.609375 * .4,
       width: window.innerWidth * .4,
