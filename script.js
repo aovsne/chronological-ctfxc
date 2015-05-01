@@ -11,7 +11,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
       $scope.vids = res.items.reduce(function(prev,cur) {
-        prev.push({id:cur.id.videoId,title:cur.snippet.title)
+        prev.push({id:cur.id.videoId,title:cur.snippet.title})
         return prev
       },[]).reverse()
       $scope.play(0)
