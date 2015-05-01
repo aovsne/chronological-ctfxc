@@ -20,46 +20,24 @@
   <!-- load bootstrap and fontawesome via CDN -->
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" />
   <!-- SPELLS -->
   <!-- load angular and angular route via CDN -->
-  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-  <script src="https://code.angularjs.org/1.2.16/angular-resource.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
-  <script src="script.js"></script>
 </head>
 <body ng-app="app">
 <div ng-controller="Ctrl">
-<header>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand">App</a>
-      </div>
-      <ul class="nav navbar-nav">
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Other Apps<span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="http://zwhitchcox.github.io/reddit-comments">Comments</a></li>
-          <li><a href="http://zwhitchcox.github.io/reddit-music">Music</a></li>
-          <li><a href="http://zwhitchcox.github.io/reddit-music">Jokes</a></li>
-          <li><a href="http://zwhitchcox.github.io/reddit-back-when">Time Machine</a></li>
-        </ul>
-      </li>
-      </ul>
-    </div><!--/.container-fluid -->
-  </nav>
-</header>
+
+<h1>Chronological CTFxC</h1>
+
 <div class="container" style="margin-top:70px">
   <button ng-click="getVids()">get vids</button>
+  <datepicker ng-model="dt" show-weeks="true"></datepicker>
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
