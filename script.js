@@ -33,6 +33,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         }
       }
       $scope.byId = function (idx) {
+        console.log($scope.vids)
         player.loadVideoById($scope.vids[idx].id)
         $scope.curIdx = idx
       }
