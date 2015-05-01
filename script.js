@@ -5,8 +5,9 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
   $scope.go = function() {
     $('#stage').html('')
     if ($scope.st===undefined) return
+    var start = new Date (Date.parse($scope.st).getTime() + 24*60*60).toISOString()
     var end = new Date (Date.parse($scope.st).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
-    $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+dtToISO($scope.st)+
+    $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+start+
     '&publishedBefore='+end+'&part=snippet&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
@@ -54,12 +55,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     })
   }
   $scope.$watch('st',$scope.go)
-  function dtToISO(date) {
-    if (date === undefined || date === null)
-      return new Date().toISOString()
-    return Date.parse(date).toISOString()
-  }
-  $('#vidList').css('height', window.innerWidth * 0.609375 * .55+'px')
+  $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
 
 }]);
 })(window.angular);
