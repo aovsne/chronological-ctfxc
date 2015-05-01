@@ -1,6 +1,7 @@
 var player;
 (function(angular) {
 var app = angular.module('app', ['ui.bootstrap'])
+$('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function(start) {
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
