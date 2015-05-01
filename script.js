@@ -16,7 +16,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         prev.push({id:cur.id.videoId,title:cur.snippet.title})
         return prev
       },[]).reverse()
-
+      console.log($scope.vids)
       $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
       player = new YT.Player('ytplayer', {
         height: window.innerWidth * 0.609375 * .5,
