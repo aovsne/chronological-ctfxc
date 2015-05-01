@@ -13,6 +13,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     } else {
       $scope.curStart = $scope.curStart.getTime() + 24*60*60*1000
     }
+    console.log($scope.curStart)
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
     var end = new Date (Date.parse($scope.curStart).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+$scope.curStart+
