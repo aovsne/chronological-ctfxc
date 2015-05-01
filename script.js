@@ -8,7 +8,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     if ($scope.st === undefined) return
     $('#stage').html('')
     if (startDate !== undefined) {
-      console.log('startDate')
+      console.log(startDate)
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
       console.log(startDate)
