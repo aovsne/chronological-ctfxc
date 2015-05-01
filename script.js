@@ -5,13 +5,12 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
   $('#vidList').css('height', '0px')
 
   $scope.go = function(startDate) {
+    console.log(startDate)
     if ($scope.st === undefined) return
     $('#stage').html('')
     if (startDate !== undefined) {
-      console.log(startDate)
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
-      console.log(startDate)
       $scope.curStart = Date(startDate)
     }
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
