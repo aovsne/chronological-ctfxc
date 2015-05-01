@@ -34,7 +34,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       }
       $scope.byId = function (idx) {
         player.loadVideoById($scope.vids[idx].id)
-        player.playVideo()
         $scope.curIdx = idx
       }
       $scope.next = function(id) {
@@ -60,21 +59,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       return new Date().toISOString()
     return Date.parse(date).toISOString()
   }
-
-  $scope.play = function(playIdx) {
-    if (playIdx === undefined) {
-      $scope.curIdx++
-    } else {
-      $scope.curIdx = playIdx
-    }
-    var cur = $scope.vids[$scope.curIdx]
-    // youtube
-
-
-
-  }
-
-  $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
+  $('#vidList').css('height', window.innerWidth * 0.609375 * .7+'px')
 
 }]);
 })(window.angular);
