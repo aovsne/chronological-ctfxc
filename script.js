@@ -26,8 +26,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       },[]).reverse()
       $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
       player = new YT.Player('ytplayer', {
-        height: window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .9 : .5),
-        width: window.innerWidth * ((window.innerWidth<768) ? .9 : .5),
+        height: window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .95 : .5),
+        width: window.innerWidth * ((window.innerWidth<768) ? .95 : .5),
         videoId: $scope.vids[0].id,
         events: {
           'onReady': onPlayerReady,
@@ -62,7 +62,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       }
       window.onresize = function() {
         $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .5)+'px')
-        player.setSize(window.innerWidth * ((window.innerWidth<768) ? .9 : .5),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .9 : .5))
+        player.setSize(window.innerWidth * ((window.innerWidth<768) ? .95 : .5),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .95 : .5))
         $scope.apply()
       }
     })
