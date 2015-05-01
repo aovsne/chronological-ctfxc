@@ -61,16 +61,17 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           $scope.playedNext = id
         } else {
           ++$scope.curIdx
-          console.log($scope.curIdx)
           player.loadVideoById($scope.vids[$scope.curIdx].id)
         }
       }
-      window.onresize = function() {
-        $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
-        $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4)+40+'px')
-        player.setSize(window.innerWidth * ((window.innerWidth<768) ? .92 : .4),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .92 : .4))
+      setSize()
+      function setSize() {
+        var width = $('.col-md-6').outerWidth()
+        player.setSize(width,width * 0.609375)
+        $('.btn-vid')[0].width(width+'px')
       }
-      $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
+      window.onresize = setSize
+
     })
   }
   $scope.$watch('st',$scope.go)
