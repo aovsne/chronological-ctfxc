@@ -2,14 +2,10 @@
 <html>
 <head>
   <style>
-  .first {
-    background:#FCC;
-    padding:12px;
-    border-radius: 3px;
+  #vidList {
+    overflow-y: scroll;
   }
-  .joke {
-    cursor: pointer
-  }
+
   .ad {
     position:fixed;
     bottom:0;
@@ -39,7 +35,7 @@
     </div>
   </form>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-offset-1 col-sm-5" id='vidList'>
     <div class="list-group">
       <a class="list-group-item" ng-repeat="vid in vids" ng-click="next(vid.id)">{{vid.title}}</a>
     </div>

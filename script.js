@@ -59,8 +59,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     }
     $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
     player = new YT.Player('ytplayer', {
-      height: window.innerWidth * 0.609375 * .4,
-      width: window.innerWidth * .4,
+      height: window.innerWidth * 0.609375 * .35,
+      width: window.innerWidth * .35,
       videoId: $scope.vids[$scope.curIdx].id,
       events: {
         'onReady': onPlayerReady,
@@ -68,10 +68,11 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       }
     })
     window.onresize = function() {
-      player.setSize(window.innerWidth * .4,window.innerWidth * 0.609375 * .4)
+      $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
+      player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
     }
   }
-
+  $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
 
 }]);
 })(window.angular);
