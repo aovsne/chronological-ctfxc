@@ -3,7 +3,7 @@
   'use strict';
 var app = angular.module('app', ['ui.bootstrap'])
 
-app.controller('Ctrl', ['$scope','$http','$compile' function($scope,$http,$compile) {
+app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function() {
     var end = new Date (Date.parse($scope.st).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+dtToISO($scope.st)+
