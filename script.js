@@ -3,12 +3,14 @@ var player;
 var app = angular.module('app', ['ui.bootstrap'])
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function(start) {
+    $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
     $('#stage').html('')
     if (start === undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
       $scope.curStart = new Date (Date.parse(start).getTime() + 24*60*60*1000)
     }
+    console.log(start)
     var start = $scope.curStart
     var end = new Date (Date.parse(start).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     start = start.toISOString()
@@ -63,7 +65,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     })
   }
   $scope.$watch('st',$scope.go)
-  $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
+
 
 }]);
 })(window.angular);
