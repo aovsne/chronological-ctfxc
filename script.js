@@ -9,8 +9,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     if (start === undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
-      console.log(start)
-      $scope.curStart = new Date (Date.parse(start).getTime() + 24*60*60*1000)
+      $scope.curStart = $scope.curStart.getTime() + 24*60*60*1000
     }
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
     var start = $scope.curStart
