@@ -37,7 +37,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       if (id !== undefined) {
         if ($scope.playedNext !== id) {
           $scope.$apply(++$scope.curIdx)
-          event.target.loadVideoById($scope.media[$scope.curIdx])
+          event.target.loadVideoById($scope.ids[$scope.curIdx])
           $scope.$apply()
         }
         $scope.playedNext = id
