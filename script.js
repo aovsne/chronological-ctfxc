@@ -5,9 +5,9 @@ var app = angular.module('app', ['ui.bootstrap'])
 
 app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
   $scope.go = function() {
-    var end = (Date.parse($scope.st) + 24*60*60*50) // limit is 50 per query
+    var end = new Date (Date.parse($scope.st).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?part=id&publishedAfter='+dtToISO($scope.st)+
-    '&publishedBefore='+dtToISO(end)+'&part=id&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
+    '&publishedBefore='+end+'&part=id&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
       $scope.ids = res.items.reduce(function(prev,cur) {
