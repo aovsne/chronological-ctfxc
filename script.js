@@ -11,11 +11,9 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
       $scope.ids = res.items.reduce(function(prev,cur) {
-        console.log(cur.id.videoId)
         prev.push(cur.id.videoId)
         return prev
       },[])
-      console.log($scope.ids)
       $scope.play(0)
     })
   }
@@ -38,6 +36,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     $scope.next = function(id,event) {
       if ($scope.playedNext !== id) {
           $scope.$apply(++$scope.curIdx)
+          if
           event.target.loadVideoById($scope.ids[$scope.curIdx])
           $scope.$apply()
       }
@@ -55,7 +54,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     player = new YT.Player('ytplayer', {
       height: window.innerWidth * 0.609375 * .7,
       width: window.innerWidth * .7,
-      videoId: $scope.ids[$scope.curIdx].ytid,
+      videoId: $scope.ids[$scope.curIdx],
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
