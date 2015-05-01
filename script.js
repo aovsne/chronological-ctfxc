@@ -32,7 +32,21 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           $scope.next($scope.vids[$scope.curIdx].id,event)
         }
       }
-      $scope.play(0)
+      $scope.next = function(id) {
+        if (id !== undefined) {
+          if ($scope.playedNext !== id) {
+            $scope.$apply(++$scope.curIdx)
+            $scope.player.loadVideoById($scope.vids[$scope.curIdx].id)
+            $scope.$apply()
+          }
+          $scope.playedNext = id
+        } else {
+          $scope.$apply(++$scope.curIdx)
+          event.target.loadVideoById($scope.vids[$scope.curIdx].id)
+          $scope.$apply()
+        }
+      }
+
     })
   }
   $scope.$watch('st',$scope.go)
@@ -43,8 +57,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
   }
 
   $scope.play = function(playIdx) {
-    var player
-    $('#stage').html("")
     if (playIdx === undefined) {
       $scope.curIdx++
     } else {
@@ -52,20 +64,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     }
     var cur = $scope.vids[$scope.curIdx]
     // youtube
-    $scope.next = function(id) {
-      if (id !== undefined) {
-        if ($scope.playedNext !== id) {
-          $scope.$apply(++$scope.curIdx)
-          $scope.player.loadVideoById($scope.vids[$scope.curIdx].id)
-          $scope.$apply()
-        }
-        $scope.playedNext = id
-      } else {
-        $scope.$apply(++$scope.curIdx)
-        event.target.loadVideoById($scope.vids[$scope.curIdx].id)
-        $scope.$apply()
-      }
-    }
 
 
     window.onresize = function() {
