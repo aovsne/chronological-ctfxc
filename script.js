@@ -47,6 +47,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         player.loadVideoById($scope.vids[idx].id)
         $scope.curIdx = idx
       }
+
+
       $scope.next = function(id) {
         if (id !== undefined) {
           if ($scope.playedNext !== id) {
@@ -64,12 +66,14 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           player.loadVideoById($scope.vids[$scope.curIdx].id)
         }
       }
-      window.onresize = function() {
-        $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
-        $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4)+40+'px')
-        player.setSize(window.innerWidth * ((window.innerWidth<768) ? .92 : .4),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .92 : .4))
+      function setSize() {
+        var width = $('.col-sm-6').outerWidth()
+        player.setSize(width,width * 0.609375)
+        #('.btn-vid').css('width',width)
+
       }
-      $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
+      setSize()
+      window.onresize = setSize()
     })
   }
   $scope.$watch('st',$scope.go)
