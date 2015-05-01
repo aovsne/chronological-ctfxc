@@ -59,7 +59,6 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
-        'onError': $scope.next
       }
     })
     window.onresize = function() {
