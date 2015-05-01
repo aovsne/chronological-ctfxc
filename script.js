@@ -7,12 +7,10 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
   $scope.go = function(start) {
     if ($scope.st === undefined) return
     $('#stage').html('')
-    console.log(start)
     if (start !== undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
-      console.log('loaded')
-      $scope.curStart = Date($scope.curStart.getTime())
+      $scope.curStart = Date(start)
     }
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
     var end = new Date (Date.parse($scope.curStart).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
@@ -51,7 +49,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           if ($scope.playedNext !== id) {
             $scope.$apply(++$scope.curIdx)
             if ($scope.vids[$scope.curIdx]===undefined) {
-              $scope.go($scope.curStart+50*24*60*60*1000)
+              $scope.go($scope.curStart.getTime()+50*24*60*60*1000)
             }
             player.loadVideoById($scope.vids[$scope.curIdx].id)
             $scope.$apply()
