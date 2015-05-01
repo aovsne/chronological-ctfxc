@@ -5,6 +5,7 @@ var app = angular.module('app', ['ui.bootstrap'])
 
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function() {
+    $('#stage').html('')
     if ($scope.st===undefined) return
     var end = new Date (Date.parse($scope.st).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+dtToISO($scope.st)+
@@ -15,6 +16,21 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         prev.push({id:cur.id.videoId,title:cur.snippet.title})
         return prev
       },[]).reverse()
+      $scope.player
+      $scope.next = function(id) {
+        if (id !== undefined) {
+          if ($scope.playedNext !== id) {
+            $scope.$apply(++$scope.curIdx)
+            $scope.player.loadVideoById($scope.vids[$scope.curIdx].id)
+            $scope.$apply()
+          }
+          $scope.playedNext = id
+        } else {
+          $scope.$apply(++$scope.curIdx)
+          event.target.loadVideoById($scope.vids[$scope.curIdx].id)
+          $scope.$apply()
+        }
+
       $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
       $scope.player = new YT.Player('ytplayer', {
         height: window.innerWidth * 0.609375 * .5,
@@ -33,19 +49,6 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           $scope.next($scope.vids[$scope.curIdx].id,event)
         }
       }
-      $scope.next = function(id) {
-        if (id !== undefined) {
-          if ($scope.playedNext !== id) {
-            $scope.$apply(++$scope.curIdx)
-            $scope.player.loadVideoById($scope.vids[$scope.curIdx].id)
-            $scope.$apply()
-          }
-          $scope.playedNext = id
-        } else {
-          $scope.$apply(++$scope.curIdx)
-          event.target.loadVideoById($scope.vids[$scope.curIdx].id)
-          $scope.$apply()
-        }
       }
       window.onresize = function() {
         $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
