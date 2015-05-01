@@ -10,11 +10,10 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     '&publishedBefore='+end+'&part=id&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
-      console.log(res)
       $scope.ids = res.items.reduce(function(prev,cur) {
         prev.push(cur.id.videoId)
         return prev
-      },[])
+      },[]).reverse()
       $scope.play(0)
     })
   }
