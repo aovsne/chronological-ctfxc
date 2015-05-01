@@ -10,8 +10,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     '&publishedBefore='+end+'&part=snippet&channelId=UCvphW8g3rf4m8LnOarxpU1A&publish'+
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=50&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){
-      $scope.ids = res.items.reduce(function(prev,cur) {
-        prev.push(cur.id.videoId)
+      $scope.vids = res.items.reduce(function(prev,cur) {
+        prev.push({id:cur.id.videoId,title:cur.snippet.title)
         return prev
       },[]).reverse()
       $scope.play(0)
@@ -33,19 +33,19 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     } else {
       $scope.curIdx = playIdx
     }
-    var cur = $scope.ids[$scope.curIdx]
+    var cur = $scope.vids[$scope.curIdx]
     // youtube
     $scope.next = function(id,event) {
       if (id !== undefined) {
         if ($scope.playedNext !== id) {
           $scope.$apply(++$scope.curIdx)
-          event.target.loadVideoById($scope.ids[$scope.curIdx])
+          event.target.loadVideoById($scope.vids[$scope.curIdx].id)
           $scope.$apply()
         }
         $scope.playedNext = id
       } else {
         $scope.$apply(++$scope.curIdx)
-        event.target.loadVideoById($scope.ids[$scope.curIdx])
+        event.target.loadVideoById($scope.vids[$scope.curIdx].id)
         $scope.$apply()
       }
     }
@@ -54,14 +54,14 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     }
     function onPlayerStateChange(event) {
       if (event.target.getPlayerState()===0) {
-        $scope.next($scope.ids[$scope.curIdx],event)
+        $scope.next($scope.vids[$scope.curIdx].id,event)
       }
     }
     $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
     player = new YT.Player('ytplayer', {
       height: window.innerWidth * 0.609375 * .4,
       width: window.innerWidth * .4,
-      videoId: $scope.ids[$scope.curIdx],
+      videoId: $scope.vids[$scope.curIdx].id,
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
