@@ -3,7 +3,7 @@
   'use strict';
 var app = angular.module('app', ['ui.bootstrap'])
 
-app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
+app.controller('Ctrl', ['$scope','$http','$compile' function($scope,$http,$compile) {
   $scope.go = function() {
     var end = new Date (Date.parse($scope.st).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+dtToISO($scope.st)+
@@ -49,7 +49,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
         $scope.next($scope.ids[$scope.curIdx],event)
       }
     }
-    $('#stage').append("<div id='ytplayer'></div>")
+    $('#stage').append("<div id='ytplayer'></div><br><button class='btn'><i class='glyphicon glyphicon-forward'></i></button>")
     player = new YT.Player('ytplayer', {
       height: window.innerWidth * 0.609375 * .4,
       width: window.innerWidth * .4,
