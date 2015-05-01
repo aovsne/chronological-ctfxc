@@ -10,10 +10,10 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     'edBefore=2015-01-05T05%3A17%3A02.102Z&maxResults=1000&key=AIzaSyDAoUvvtnXog6O4IoxcUXTG6vHSB9fyaxM')
     .success(function(res){console.log(res.items)});
   }
-  dtToISO = function() {
-    if ($scope.dt === undefined || $scope.dt === null)
-      return Math.floor(Date.now().toISOString())
-    return Math.floor(Date.parse($scope.dt).getTime().toISOString())
+  function dtToISO(date) {
+    if (date === undefined || date === null)
+      return new Date().toISOString()
+    return Date.parse(date).toISOString()
   }
 
   $scope.play = function(playIdx) {
