@@ -4,7 +4,7 @@ var app = angular.module('app', ['ui.bootstrap'])
 $('#vidList').css('height', '0px')
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function(start) {
-    $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
+    $('#vidList').css('height', '0px')
     $('#stage').html('')
     if (start === undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
