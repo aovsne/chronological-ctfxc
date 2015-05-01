@@ -49,7 +49,7 @@ app.controller('Ctrl', ['$scope','$http','$compile' function($scope,$http,$compi
         $scope.next($scope.ids[$scope.curIdx],event)
       }
     }
-    $('#stage').append("<div id='ytplayer'></div><br><button class='btn'><i class='glyphicon glyphicon-forward'></i>Next</button>")
+    $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i>Next</button>")($scope))
     player = new YT.Player('ytplayer', {
       height: window.innerWidth * 0.609375 * .4,
       width: window.innerWidth * .4,
