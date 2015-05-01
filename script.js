@@ -54,7 +54,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     player = new YT.Player('ytplayer', {
       height: window.innerWidth * 0.609375 * .7,
       width: window.innerWidth * .7,
-      videoId: $scope.media[$scope.curIdx].ytid,
+      videoId: $scope.ids[$scope.curIdx].ytid,
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange,
