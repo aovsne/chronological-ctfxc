@@ -34,7 +34,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           $scope.next($scope.vids[$scope.curIdx].id,event)
         }
       }
-      $scope.byId = (idx) {
+      $scope.byId = function (idx) {
         player.loadVideoById($scope.vids[idx].id)
         $scope.curIdx = idx
       }
