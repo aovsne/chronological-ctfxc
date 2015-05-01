@@ -3,7 +3,7 @@ var player;
 var app = angular.module('app', ['ui.bootstrap'])
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $('#vidList').css('height', '0px')
-
+  $scope.curIdx = 0
   $scope.go = function() {
     if ($scope.st === undefined) return
     $('#stage').html('')
