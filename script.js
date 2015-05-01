@@ -59,7 +59,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       return new Date().toISOString()
     return Date.parse(date).toISOString()
   }
-  $('#vidList').css('height', window.innerWidth * 0.609375 * .7+'px')
+  $('#vidList').css('height', window.innerWidth * 0.609375 * .55+'px')
 
 }]);
 })(window.angular);
