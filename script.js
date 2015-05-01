@@ -13,7 +13,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     } else {
       $scope.curStart = Date.parse($scope.st).getTime() + 24*60*60*1000
     }
-    $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4) +34+'px')
+    $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4) +38+'px')
     var end = new Date ($scope.curStart + 24*60*60*50*1000).toISOString() // limit is 50 per query
     $http.get('https://www.googleapis.com/youtube/v3/search?order=date&publishedAfter='+
     new Date($scope.curStart).toISOString()+
@@ -68,7 +68,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
       }
       window.onresize = function() {
         $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
-        $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4)+34+'px')
+        $('#vidList').css('height', window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .8 : .4)+38+'px')
         player.setSize(window.innerWidth * ((window.innerWidth<768) ? .92 : .4),window.innerWidth * 0.609375 * ((window.innerWidth<768) ? .92 : .4))
       }
       $('.btn-vid').css('width',window.innerWidth * ((window.innerWidth<768) ? .92 : .4)+'px')
