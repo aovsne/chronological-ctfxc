@@ -46,6 +46,7 @@ app.controller('Ctrl', ['$scope','$http', function($scope,$http) {
     function onPlayerStateChange(event) {
       if (event.target.getPlayerState()===0) {
         $scope.next($scope.ids[$scope.curIdx],event)
+      }
     }
     $('#stage').append("<div id='ytplayer'></div>")
     player = new YT.Player('ytplayer', {
