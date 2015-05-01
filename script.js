@@ -1,17 +1,17 @@
 var player;
 (function(angular) {
 var app = angular.module('app', ['ui.bootstrap'])
-$('#vidList').css('height', '0px')
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
+  $('#vidList').css('height', '0px')
+
   $scope.go = function(start) {
-    $('#vidList').css('height', '0px')
     $('#stage').html('')
     if (start === undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
     } else {
       $scope.curStart = new Date (Date.parse(start).getTime() + 24*60*60*1000)
     }
-    $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
+    $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
     var start = $scope.curStart
     var end = new Date (Date.parse(start).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     start = start.toISOString()
@@ -59,8 +59,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         }
       }
       window.onresize = function() {
-        $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
-        player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
+        $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
+        player.setSize(window.innerWidth * .5,window.innerWidth * 0.609375 * .35)
         $scope.apply()
       }
     })
