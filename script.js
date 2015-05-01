@@ -61,7 +61,8 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
           }
           $scope.playedNext = id
         } else {
-          $scope.$apply(++$scope.curIdx)
+          ++$scope.curIdx
+          console.log($scope.curIdx)
           player.loadVideoById($scope.vids[$scope.curIdx].id)
         }
       }
