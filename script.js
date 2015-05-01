@@ -4,13 +4,12 @@ var app = angular.module('app', ['ui.bootstrap'])
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $('#vidList').css('height', '0px')
 
-  $scope.go = function(asdfdd) {
+  $scope.go = function(start) {
     $('#stage').html('')
-    console.log(asdfdd)
     if ($scope.st === undefined) return
-    if (asdfdd === undefined) {
+    if (start === undefined) {
       $scope.curStart = new Date (Date.parse($scope.st).getTime() + 24*60*60*1000)
-    } else {
+    } else if ($scope.curStart !== undefined){
       $scope.curStart = $scope.curStart.getTime() + 24*60*60*1000
     }
     $('#vidList').css('height', window.innerWidth * 0.609375 * .5+'px')
