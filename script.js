@@ -11,7 +11,7 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
     } else {
       $scope.curStart = new Date (Date.parse(start).getTime() + 24*60*60*1000)
     }
-    console.log(start)
+    $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
     var start = $scope.curStart
     var end = new Date (Date.parse(start).getTime() + 24*60*60*50*1000).toISOString() // limit is 50 per query
     start = start.toISOString()
