@@ -2,7 +2,7 @@
 (function(angular) {
   'use strict';
 var app = angular.module('app', ['ui.bootstrap'])
-
+var player;
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function() {
     $('#stage').html('')
@@ -16,23 +16,9 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         prev.push({id:cur.id.videoId,title:cur.snippet.title})
         return prev
       },[]).reverse()
-      $scope.player
-      $scope.next = function(id) {
-        if (id !== undefined) {
-          if ($scope.playedNext !== id) {
-            $scope.$apply(++$scope.curIdx)
-            $scope.player.loadVideoById($scope.vids[$scope.curIdx].id)
-            $scope.$apply()
-          }
-          $scope.playedNext = id
-        } else {
-          $scope.$apply(++$scope.curIdx)
-          event.target.loadVideoById($scope.vids[$scope.curIdx].id)
-          $scope.$apply()
-        }
-      }
+
       $('#stage').append($compile("<div id='ytplayer'></div><br><button class='btn' ng-click='next()'><i class='glyphicon glyphicon-forward'></i></button>")($scope))
-      $scope.player = new YT.Player('ytplayer', {
+      player = new YT.Player('ytplayer', {
         height: window.innerWidth * 0.609375 * .5,
         width: window.innerWidth * .4,
         videoId: $scope.vids[0].id,
@@ -42,16 +28,30 @@ app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$comp
         }
       })
       function onPlayerReady(event) {
-        event.target.playVideo()
+        player.playVideo()
       }
       function onPlayerStateChange(event) {
         if (event.target.getPlayerState()===0) {
           $scope.next($scope.vids[$scope.curIdx].id,event)
         }
       }
+      $scope.next = function(id) {
+        if (id !== undefined) {
+          if ($scope.playedNext !== id) {
+            $scope.$apply(++$scope.curIdx)
+            player.loadVideoById($scope.vids[$scope.curIdx].id)
+            $scope.$apply()
+          }
+          $scope.playedNext = id
+        } else {
+          $scope.$apply(++$scope.curIdx)
+          player.loadVideoById($scope.vids[$scope.curIdx].id)
+          $scope.$apply()
+        }
+      }
       window.onresize = function() {
         $('#vidList').css('height', window.innerWidth * 0.609375 * .35+'px')
-        $scope.player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
+        player.setSize(window.innerWidth * .35,window.innerWidth * 0.609375 * .35)
         $scope.apply()
       }
     })
