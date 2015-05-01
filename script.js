@@ -1,8 +1,6 @@
-
-(function(angular) {
-  'use strict';
-var app = angular.module('app', ['ui.bootstrap'])
 var player;
+(function(angular) {
+var app = angular.module('app', ['ui.bootstrap'])
 app.controller('Ctrl', ['$scope','$http','$compile', function($scope,$http,$compile) {
   $scope.go = function() {
     $('#stage').html('')
